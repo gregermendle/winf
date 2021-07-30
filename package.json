@@ -1,0 +1,18 @@
+{
+  "name": "window-info",
+  "version": "0.1.0",
+  "description": "Get window information in OSX and Windows",
+  "main": "lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:gregermendle/window-info.git"
+  },
+  "author": "Greg",
+  "license": "MIT",
+  "dependencies": {
+    "neon-cli": "^0.9.0"
+  },
+  "scripts": {
+    "install": "neon build"
+  }
+}
