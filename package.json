@@ -9,10 +9,11 @@
   },
   "author": "Greg",
   "license": "MIT",
+  "scripts": {},
   "dependencies": {
-    "neon-cli": "^0.9.0"
+    "nan": "^2.14.2"
   },
-  "scripts": {
-    "install": "neon build"
+  "devDependencies": {
+    "node-gyp": "^8.1.0"
   }
 }
