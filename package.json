@@ -9,7 +9,9 @@
   },
   "author": "Greg",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "build": "node-gyp rebuild"
+  },
   "dependencies": {
     "nan": "^2.14.2"
   },
