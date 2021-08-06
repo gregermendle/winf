@@ -6,7 +6,7 @@ Native module for OSX and Windows to get information about application windows r
 The API is currently incomplete. A planned API is shown below.
 
 #### `isFullScreen(title: string): boolean`
-[OSX Only] Returns a boolean determining if a window with the defined title is full screen.
+Returns a boolean determining if a window with the defined title is full screen.
 
 ## Planned API
 #### `findWindowByTitle(title: string): Window | null`
