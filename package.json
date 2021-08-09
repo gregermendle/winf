@@ -13,7 +13,7 @@
     "build": "node-gyp rebuild"
   },
   "dependencies": {
-    "nan": "^2.14.2"
+    "node-addon-api": "^4.0.0"
   },
   "devDependencies": {
     "node-gyp": "^8.1.0"
