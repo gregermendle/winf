@@ -2,7 +2,7 @@
   "name": "window-info",
   "version": "0.1.0",
   "description": "Get window information in OSX and Windows",
-  "main": "lib/index.js",
+  "main": "src/index.js",
   "repository": {
     "type": "git",
     "url": "git@github.com:gregermendle/window-info.git"
@@ -17,5 +17,6 @@
   },
   "devDependencies": {
     "node-gyp": "^8.1.0"
-  }
+  },
+  "gypfile": true
 }
