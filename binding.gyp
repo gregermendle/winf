@@ -8,6 +8,7 @@
         ["OS==\"mac\"",
           {
             "sources": [
+              "./src/rect.cc",
               "./src/window-info_mac.cc",
               "./src/window-info.cc"
             ],
@@ -22,6 +23,7 @@
         ["OS==\"win\"",
           {
             "sources": [
+              "./src/rect.cc",
               "./src/window-info_win.cc",
               "./src/window-info.cc"
             ]

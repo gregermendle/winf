@@ -7,6 +7,8 @@ Napi::Object Init(Napi::Env env, Napi::Object exports)
               Napi::Function::New(env, ListWindows));
   exports.Set(Napi::String::New(env, "windowTitle"),
               Napi::Function::New(env, WindowTitle));
+  exports.Set(Napi::String::New(env, "windowRect"),
+              Napi::Function::New(env, WindowRect));
   return exports;
 }
 

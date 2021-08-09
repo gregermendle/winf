@@ -1,3 +1,4 @@
+#include "rect.h"
 #include "window-info.h"
 #include <CoreGraphics/CoreGraphics.h>
 
@@ -114,6 +115,7 @@ Napi::Value WindowTitle(const Napi::CallbackInfo &info)
 {
   Napi::Env env = info.Env();
   WindowID id = GetWindowID(info, "WindowTitle");
+
   if (id == empty_window_id)
   {
     return env.Null();
@@ -148,12 +150,53 @@ Napi::Array ListWindows(const Napi::CallbackInfo &info)
       kCGNullWindowID);
   CFIndex count = CFArrayGetCount(windowList);
   Napi::Array result = Napi::Array::New(env);
+
   for (unsigned int i = 0; i < count; i++)
   {
     uint32_t winId = (uint32_t)(uintptr_t)CFArrayGetValueAtIndex(windowList, i);
     result[i] = Napi::Number::New(env, winId);
   }
+
   return result;
+}
+
+Napi::Value WindowRect(const Napi::CallbackInfo &info)
+{
+  Napi::Env env = info.Env();
+  WindowID id = GetWindowID(info, "WindowTitle");
+
+  if (id == empty_window_id)
+  {
+    return env.Null();
+  }
+
+  CGRect rect = CGRectMake(0, 0, 100, 100);
+  WindowID idCArray[1] = {id};
+  CFArrayRef idArray = CFArrayCreate(NULL, (const void **)idCArray, 1, NULL);
+  CFArrayRef descArray = CGWindowListCreateDescriptionFromArray(idArray);
+  CFDictionaryRef description = (CFDictionaryRef)CFArrayGetValueAtIndex(descArray, 0);
+
+  if (CFDictionaryContainsKey(description, kCGWindowBounds))
+  {
+    CFDictionaryRef bounds = (CFDictionaryRef)CFDictionaryGetValue(description, kCGWindowBounds);
+    if (bounds)
+    {
+      CGRectMakeWithDictionaryRepresentation(bounds, &rect);
+      Napi::Object result = CreateRect(
+          env,
+          CGRectGetMaxX(rect),
+          CGRectGetMaxY(rect),
+          CGRectGetHeight(rect),
+          CGRectGetWidth(rect));
+      CFRelease(descArray);
+      CFRelease(idArray);
+      return result;
+    }
+  }
+
+  CFRelease(descArray);
+  CFRelease(idArray);
+  return env.Null();
 }
 
 // bool isFullScreen(std::string titlePredicate)
