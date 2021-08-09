@@ -9,6 +9,8 @@ Napi::Object Init(Napi::Env env, Napi::Object exports)
               Napi::Function::New(env, WindowTitle));
   exports.Set(Napi::String::New(env, "windowRect"),
               Napi::Function::New(env, WindowRect));
+  exports.Set(Napi::String::New(env, "isWindowFullScreen"),
+              Napi::Function::New(env, IsWindowFullScreen));
   return exports;
 }
 
