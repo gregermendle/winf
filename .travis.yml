@@ -1,26 +1,26 @@
 sudo: false
 language: node_js
 node_js:
-- node
+  - node
 addons:
   apt:
     sources:
-    - ubuntu-toolchain-r-test
+      - ubuntu-toolchain-r-test
     packages:
-    - g++-4.8
-    - gcc-4.8-multilib
-    - g++-4.8-multilib
-    - gcc-multilib
-    - g++-multilib
+      - g++-4.8
+      - gcc-4.8-multilib
+      - g++-4.8-multilib
+      - gcc-multilib
+      - g++-multilib
 os:
-- osx
-- linux
+  - osx
+  - linux
 before_deploy:
-- ARCHIVE_NAME="${TRAVIS_TAG:-latest}-$TRAVIS_OS_NAME-`uname -m`.tar"
-- npm run prebuild
-- if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ARCH=ia32 npm run prebuild; fi
-- tar --create --verbose --file="$ARCHIVE_NAME" --directory "$TRAVIS_BUILD_DIR/prebuilds"
-  .
+  - ARCHIVE_NAME="${TRAVIS_TAG:-latest}-$TRAVIS_OS_NAME-`uname -m`.tar"
+  - npm run prebuild
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ARCH=ia32 npm run prebuild; fi
+  - tar --create --verbose --file="$ARCHIVE_NAME" --directory "$TRAVIS_BUILD_DIR/prebuilds"
+    .
 deploy:
   provider: releases
   draft: false
@@ -31,4 +31,4 @@ deploy:
     tags: true
     node: node
   api_key:
-    secure: JjNbqjsZCsoHfIHI5JLHOud6ni0uAMvuOPNzBWnECH/bxTG0NA8vkZL6zjBGjv/QUoLP88gYpOslbQYySfgKbJRRUZ6rIArgz0QQj5G0ofsNEgNKGQ+5CK3a08gySf/lVSrAL7wPKnBwYmfSk1E1cO9xjpqWFscR96hSBm0sUK1w3rfpqDJAgm2uEHdRd37vK+7Ceo+V66+G8HWp0xf1oRsz3hEFVUsVU+ypre76JYL8sb9qAVWZRr5yujkbp7RYfb7nWqWA+2cwTtjAlzX5xIhT099eopUl7noJG4Za08vLiL53xLMOAssdLkTySw0rod9DEOVzv0QzyM1Ms4gvUTVLPlPW6tJKBJtIwkCNhstxrv671x497tszcGDwNcRMNWvDOKY+ORJpyON1x9/pINZxC+MLzaT+sGM2JA4kS8Ym4nfNM2H7vn9PvLwILL9jvmajqtLFbQfMj7+iqnT4o451uxw5ybXgmZpJ/V83qTY6BTKTERCByitXEBvJLfKrf+njUf5yUso1W+FYJMR58dmJc0RR61os6Ogzvse/S5skpFTEqV44DPkix9iXEh2uQislilbImxAstqeB9yF36EOeqTL5uMJpKKngISnuMwVUwN466tESxuq3bd1h4lwJ9/vaxXqTX20+5j67PLzaJwQW/kjsd3mbTROVtZRdagI=
+    secure: DUmDm3xlU8l2zMNq2cD6ocr2/RiELbGtg6mTkGGtyowh0/6a5Cm6kwvGjwjQ7jrRjdcxZUdNWSFWj4dKZX1PZGYi08NgdfPtgiC/v+bG/SsJcYbhxd6u1X41wqJNlqDOqH+hV/WhTD6o7LbWUZwteZNP4QOwNn3iCxv6gA8iICIMZzVRPDTkMT28qPbD/flifnNCf9aYus4k3AdIxscwjOxZVGOldRXWV9VdbhDGDreG8TxunGeo3LypJ3Ff03tc6hd7tulSP5RnMVVU1BiCn1e8mF4eLZwL5J2ohNVJOTnFCfBcLyKuGo7fbwgEUHNBY7zIp4h6tYWkV7Ahut0pEtwHMgpBIdUJVeNvV0mMANP/W14KIAdIsHzFD6VzU90g4H1yIrsnPum4Xrx7jhttNOOcrUZ2jk+fL1cxuAPcxm2t2WGFfcIDyLaY20u4oqZ1+w62ZQMgyfB318+0pDR7S4OsLZcEZPDlt0DBMMKbCETozGqFt48NCNgW4I1CTjkheNHEXTXfKgdkYOlHp8BPRbBkZQ7ciXNZT3tI9r1dfyLhFMMfsUNSS2Sa46/7zWm+ro0ktvqFD3mFUAi3pxVXkIbt91c0BIVU8AkPssPMtQetgWIw/K+Nm356hKjKrQ+Z7NlEz5P/9fyd3binDmpuRDBOnZI9hHh3VF0TSYcLcjo=
