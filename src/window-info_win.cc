@@ -45,7 +45,10 @@ Napi::Array ListWindows(const Napi::CallbackInfo &info)
       hwnd != NULL;
       hwnd = GetNextWindow(hwnd, GW_HWNDNEXT), i++)
   {
-    result[i] = Napi::Number::New(env, (uint32_t)(uintptr_t)hwnd);
+    if (IsWindowVisible(hwnd))
+    {
+      result[i] = Napi::Number::New(env, (uint32_t)(uintptr_t)hwnd);
+    }
   }
 
   return result;
