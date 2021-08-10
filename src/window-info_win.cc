@@ -1,7 +1,6 @@
 #include "rect.h"
 #include "window-info.h"
 #include <iostream>
-#include <napi.h>
 #include <windows.h>
 #include <winuser.h>
 
@@ -42,7 +41,7 @@ Napi::Array ListWindows(const Napi::CallbackInfo &info)
   Napi::Array result = Napi::Array::New(env);
 
   for (
-      auto [i, hwnd] = std::tuple{0, GetTopWindow(NULL)};
+      auto [i, hwnd] = std::tuple{(uint32_t)0, GetTopWindow(NULL)};
       hwnd != NULL;
       hwnd = GetNextWindow(hwnd, GW_HWNDNEXT), i++)
   {
@@ -112,9 +111,8 @@ Napi::Boolean isWindowFullScreen(const Napi::CallbackInfo &info)
 
   RECT windowRect;
   GetWindowRect(hwnd, &windowRect);
-  Napi::Boolean result = Napi::Boolean::New(env, windowRect.left == monitorInfo.rcMonitor.left &&
-                                                     windowRect.right == monitorInfo.rcMonitor.right &&
-                                                     windowRect.top == monitorInfo.rcMonitor.top &&
-                                                     windowRect.bottom == monitorInfo.rcMonitor.bottom);
-  return result;
+  return Napi::Boolean::New(env, windowRect.left == monitorInfo.rcMonitor.left &&
+                                     windowRect.right == monitorInfo.rcMonitor.right &&
+                                     windowRect.top == monitorInfo.rcMonitor.top &&
+                                     windowRect.bottom == monitorInfo.rcMonitor.bottom);
 }

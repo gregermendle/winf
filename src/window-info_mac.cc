@@ -83,7 +83,7 @@ Napi::Array ListWindows(const Napi::CallbackInfo &info)
   CFIndex count = CFArrayGetCount(windowList);
   Napi::Array result = Napi::Array::New(env);
 
-  for (unsigned int i = 0; i < count; i++)
+  for (uint32_t i = 0; i < count; i++)
   {
     uint32_t winId = (uint32_t)(uintptr_t)CFArrayGetValueAtIndex(windowList, i);
     result[i] = Napi::Number::New(env, winId);
