@@ -95,7 +95,7 @@ Napi::Value WindowRect(const Napi::CallbackInfo &info)
   return result;
 }
 
-Napi::Boolean isWindowFullScreen(const Napi::CallbackInfo &info)
+Napi::Boolean IsWindowFullScreen(const Napi::CallbackInfo &info)
 {
   Napi::Env env = info.Env();
   HWND hwnd = GetWindowID(info, "WindowTitle");
