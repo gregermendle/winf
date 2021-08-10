@@ -42,7 +42,7 @@ Napi::Array ListWindows(const Napi::CallbackInfo &info)
   Napi::Array result = Napi::Array::New(env);
 
   for (
-      unsigned int i = 0, HWND hwnd = GetTopWindow(NULL);
+      auto [i, hwnd] = std::tuple{0, GetTopWindow(NULL)};
       hwnd != NULL;
       hwnd = GetNextWindow(hwnd, GW_HWNDNEXT), i++)
   {
