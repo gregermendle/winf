@@ -1,6 +1,6 @@
 {
   "name": "window-info",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Get window information in OSX and Windows",
   "main": "index.js",
   "repository": {
