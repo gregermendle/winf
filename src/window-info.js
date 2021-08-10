@@ -1,4 +1,4 @@
-var windowInfo = require("../build/Release/window-info");
+var windowInfo = require("../");
 
 const list = windowInfo.listWindows();
 console.log(
