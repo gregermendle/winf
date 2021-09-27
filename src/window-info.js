@@ -1,7 +1,10 @@
-var windowInfo = require('../build/Release/window-info');
+var windowInfo = require("../");
 
-const title = "League of Legends (TM) Client";
-
-setInterval(() => {
-  console.log(`${title} is fullscreen? `, windowInfo.isFullScreen(title));
-}, 2000);
+const list = windowInfo.listWindows();
+console.log(
+  list.map((x) => ({
+    title: windowInfo.windowTitle(x),
+    fullScreen: windowInfo.isWindowFullScreen(x),
+    rect: windowInfo.windowRect(x),
+  }))
+);

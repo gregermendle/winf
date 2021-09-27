@@ -1,8 +1,8 @@
 {
   "name": "window-info",
-  "version": "0.1.0",
+  "version": "0.2.1",
   "description": "Get window information in OSX and Windows",
-  "main": "lib/index.js",
+  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "git@github.com:gregermendle/window-info.git"
@@ -10,12 +10,19 @@
   "author": "Greg",
   "license": "MIT",
   "scripts": {
-    "build": "node-gyp rebuild"
+    "rebuild": "node-gyp rebuild",
+    "prebuild": "prebuildify -t 8.14.0 -t electron@3.0.0 --napi --strip",
+    "install": "node-gyp-build",
+    "test": "node ./src/window-info"
   },
   "dependencies": {
-    "nan": "^2.14.2"
+    "node-addon-api": "^4.0.0",
+    "node-gyp-build": "^4.2.3"
   },
   "devDependencies": {
-    "node-gyp": "^8.1.0"
-  }
+    "node-gyp": "^8.1.0",
+    "prebuildify": "^4.2.0",
+    "prebuildify-ci": "^1.0.5"
+  },
+  "gypfile": true
 }

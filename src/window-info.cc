@@ -1,26 +1,17 @@
-#include <nan.h>
-
-using namespace Nan;
-using namespace v8;
-
 #include "window-info.h"
+#include <napi.h>
 
-NAN_METHOD(isFullScreen) {
-  Nan::Utf8String titlePredicateUTF8(info[0]);
-  int len = titlePredicateUTF8.length();
-  
-  if (len <= 0) {
-     return Nan::ThrowTypeError("IsFullScreen - Expects a non-empty string.");
-  }
-
-  std::string titlePredicate(*titlePredicateUTF8, len);
-  bool fullScreen = isFullScreen(titlePredicate);
-  info.GetReturnValue().Set(fullScreen);
+Napi::Object Init(Napi::Env env, Napi::Object exports)
+{
+  exports.Set(Napi::String::New(env, "listWindows"),
+              Napi::Function::New(env, ListWindows));
+  exports.Set(Napi::String::New(env, "windowTitle"),
+              Napi::Function::New(env, WindowTitle));
+  exports.Set(Napi::String::New(env, "windowRect"),
+              Napi::Function::New(env, WindowRect));
+  exports.Set(Napi::String::New(env, "isWindowFullScreen"),
+              Napi::Function::New(env, IsWindowFullScreen));
+  return exports;
 }
 
-NAN_MODULE_INIT(Init) {
-   Nan::Set(target, New<String>("isFullScreen").ToLocalChecked(), 
-    GetFunction(New<FunctionTemplate>(isFullScreen)).ToLocalChecked());
-}
-
-NODE_MODULE(native_rt, Init)
+NODE_API_MODULE(windowInfo, Init)
