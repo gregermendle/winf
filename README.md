@@ -1,6 +1,6 @@
 # Window Info
 
-Native module for OSX and Windows to get information about application windows running on a system.
+Node module for OSX and Windows to get information about application windows.
 
 ## API
 
@@ -19,7 +19,3 @@ Returns the title of a given window, otherwise `null`.
 #### `isWindowFullScreen(window: Window): boolean`
 
 Returns a boolean determining if a window is full screen.
-
-## Don't like my code?
-
-Make a fuckin' PR then...
