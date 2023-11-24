@@ -77,16 +77,41 @@ Napi::Value WindowTitle(const Napi::CallbackInfo &info)
 Napi::Array ListWindows(const Napi::CallbackInfo &info)
 {
   Napi::Env env = info.Env();
-  CFArrayRef windowList = CGWindowListCreate(
+  CFArrayRef windowList = CGWindowListCopyWindowInfo(
       kCGWindowListOptionOnScreenOnly | kCGWindowListExcludeDesktopElements,
       kCGNullWindowID);
   CFIndex count = CFArrayGetCount(windowList);
   Napi::Array result = Napi::Array::New(env);
 
-  for (uint32_t i = 0; i < count; i++)
+  for (int i = 0, resultIdx = 0; i < count; i++)
   {
-    uint32_t winId = (uint32_t)(uintptr_t)CFArrayGetValueAtIndex(windowList, i);
-    result[i] = Napi::Number::New(env, winId);
+    CFDictionaryRef window = (CFDictionaryRef)CFArrayGetValueAtIndex(windowList, i);
+    if (!window) {
+      continue;
+    }
+    
+    CFNumberRef winId = (CFNumberRef)CFDictionaryGetValue(window, kCGWindowNumber);
+    CFNumberRef windowLayer = (CFNumberRef)
+        CFDictionaryGetValue(window, kCGWindowLayer);
+    if (!windowLayer)
+    {
+      continue;
+    }
+
+    int layer;
+    if (!CFNumberGetValue(windowLayer, kCFNumberIntType, &layer) || layer != 0)
+    {
+      continue;
+    }
+
+    CGWindowID id;
+    if (!CFNumberGetValue(winId, kCFNumberIntType, &id))
+    {
+      continue;
+    }
+
+    result[resultIdx] = Napi::Number::New(env, id);
+    resultIdx++;
   }
 
   return result;

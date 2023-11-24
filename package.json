@@ -3,13 +3,15 @@
   "version": "0.2.1",
   "description": "Get window information in OSX and Windows",
   "main": "index.js",
+  "types": "index.d.ts",
   "repository": {
     "type": "git",
     "url": "git@github.com:gregermendle/window-info.git"
   },
-  "author": "Greg",
+  "author": "Gregory Jordan",
   "license": "MIT",
   "scripts": {
+    "prepublish": "npm run rebuild",
     "rebuild": "node-gyp rebuild",
     "prebuild": "prebuildify -t 8.14.0 -t electron@3.0.0 --napi --strip",
     "install": "node-gyp-build",
