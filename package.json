@@ -1,9 +1,10 @@
 {
-  "name": "window-info",
+  "name": "@gregermendle/winf",
   "version": "0.3.0",
   "description": "Get window information in OSX and Windows",
   "main": "index.js",
   "types": "index.d.ts",
+  "private": false,
   "repository": {
     "type": "git",
     "url": "git@github.com:gregermendle/window-info.git"
@@ -13,18 +14,21 @@
   "scripts": {
     "prepublish": "npm run rebuild",
     "rebuild": "node-gyp rebuild",
-    "prebuild": "prebuildify -t 8.14.0 -t electron@3.0.0 --napi --strip",
+    "prebuild": "prebuild -t 3 -r napi",
     "install": "node-gyp-build",
-    "test": "node ./src/window-info"
+    "build": "node-gyp-build",
+    "test": "node ./winf"
   },
   "dependencies": {
-    "node-addon-api": "^4.0.0",
-    "node-gyp-build": "^4.2.3"
+    "node-addon-api": "^7.0.0",
+    "node-gyp-build": "^4.7.1"
   },
   "devDependencies": {
     "node-gyp": "^8.1.0",
-    "prebuildify": "^4.2.0",
-    "prebuildify-ci": "^1.0.5"
+    "prebuild": "^12.1.0"
   },
-  "gypfile": true
+  "gypfile": true,
+  "binary": {
+    "napi_versions": [3]
+  }
 }

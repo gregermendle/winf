@@ -1,5 +1,5 @@
 #include "rect.h"
-#include "window-info.h"
+#include "winf.h"
 #include <CoreGraphics/CoreGraphics.h>
 
 CGRect MainDisplayBounds()

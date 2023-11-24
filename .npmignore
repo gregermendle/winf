@@ -1,0 +1,4 @@
+.npmignore
+.gitignore
+.clang-format
+src

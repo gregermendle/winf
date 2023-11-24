@@ -1,5 +1,5 @@
 #include "rect.h"
-#include "window-info.h"
+#include "winf.h"
 #include <iostream>
 #include <windows.h>
 #include <winuser.h>

@@ -1,4 +1,4 @@
-// window-info.d.ts
+// winf.d.ts
 
 interface Rect {
   x: number;
@@ -9,7 +9,7 @@ interface Rect {
 
 type WindowId = number;
 
-declare module "window-info" {
+declare module "winf" {
   /**
    * Returns a list of all windows that are open and visible on the system.
    * @returns A list of numeric window ids.

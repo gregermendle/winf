@@ -1,7 +1,10 @@
 {
+  "variables": {
+    'openssl_fips': 0
+  },
   "targets": [
     {
-      "target_name": "window-info",
+      "target_name": "winf",
       "include_dirs": ["<!@(node -p \"require('node-addon-api').include\")"],
       "dependencies": ["<!(node -p \"require('node-addon-api').gyp\")"],
       "defines": [ "NAPI_DISABLE_CPP_EXCEPTIONS" ],
@@ -17,8 +20,8 @@
           {
             "sources": [
               "./src/rect.cc",
-              "./src/window-info_mac.cc",
-              "./src/window-info.cc"
+              "./src/winf_mac.cc",
+              "./src/winf.cc"
             ],
             "link_settings": {
               "libraries": [
@@ -32,8 +35,8 @@
           {
             "sources": [
               "./src/rect.cc",
-              "./src/window-info_win.cc",
-              "./src/window-info.cc"
+              "./src/winf_win.cc",
+              "./src/winf.cc"
             ]
           }
         ],
