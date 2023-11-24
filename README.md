@@ -1,21 +1,26 @@
 # Window Info
 
-Node module for OSX and Windows to get information about application windows.
+Get basic info about windows on OSX and Windows.
 
 ## API
 
-#### `listWindows(): Array<Window>`
+Get a list of all windows open on the system.
+```tsx
+listWindows(): Array<Window>
+```
 
-Returns a list of all windows open on the system.
+Get the position and dimensions of a window.
+```tsx
+windowRect(window: Window): Rect
+```
 
-#### `windowRect(window: Window): Rect`
+Get the title of a window, otherwise `null`.
+```tsx
+windowTitle(window: Window): string | null
+```
 
-Returns the position and dimensions of a given window.
+Determine if a window is full screen.
+```tsx
+isWindowFullScreen(window: Window): boolean
+```
 
-#### `windowTitle(window: Window): string | null`
-
-Returns the title of a given window, otherwise `null`.
-
-#### `isWindowFullScreen(window: Window): boolean`
-
-Returns a boolean determining if a window is full screen.
